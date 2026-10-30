@@ -13,9 +13,6 @@ permissions:
 jobs:
   build:
     runs-on: macos-14
-    strategy:
-      matrix:
-        scheme: [rootful, rootless]
     steps:
       - uses: actions/checkout@v4
 
@@ -27,17 +24,8 @@ jobs:
       - name: Install dpkg
         run: brew install dpkg || true
 
-      - name: Build Rootful Package
-        if: matrix.scheme == 'rootful'
-        run: |
-          export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
-          make package FINALPACKAGE=1 DEBUG=0
-          ls -la packages/
-
       - name: Build Rootless Package
-        if: matrix.scheme == 'rootless'
         run: |
-          export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
           make clean
           make package FINALPACKAGE=1 DEBUG=0 THEOS_PACKAGE_SCHEME=rootless
           ls -la packages/
@@ -45,5 +33,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PodsGrant-Enhanced-${{ matrix.scheme }}
+          name: PodsGrant-Enhanced-Rootless
           path: packages/*.deb
