@@ -1,0 +1,9 @@
+Package: com.lamkwong.podsgrant-enhanced
+Name: PodsGrant Enhanced
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: 优化版 AirPods/Beats 兼容插件，彻底修复开机重启无弹窗、优化开盖毫秒级极速响应，支持 AirPods 4 / Pro 2 等新型号。
+Maintainer: LamKwong <abc999mn@163.com>
+Author: LNSSPsd & LamKwong
+Section: Tweaks
+Depends: firmware (>= 13.0), mobilesubstrate (>= 0.9.5000)
