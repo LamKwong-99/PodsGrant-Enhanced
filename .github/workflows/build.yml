@@ -3,8 +3,6 @@ name: Build PodsGrant Enhanced
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   workflow_dispatch:
 
 permissions:
@@ -12,7 +10,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -20,9 +18,6 @@ jobs:
         uses: Randomblock1/theos-action@v1
         with:
           theos-dir: ${{ github.workspace }}/theos
-
-      - name: Install dpkg
-        run: brew install dpkg || true
 
       - name: Build Rootless Package
         run: |
